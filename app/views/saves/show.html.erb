@@ -1,0 +1,11 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @save %>
+
+<div>
+  <%= link_to "Download this save", download_save_path(@save) %> |
+  <%= link_to "Edit this save", edit_save_path(@save) %> |
+  <%= link_to "Back to saves", saves_path %>
+
+  <%= button_to "Destroy this save", @save, method: :delete %>
+</div>

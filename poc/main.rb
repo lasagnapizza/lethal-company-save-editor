@@ -47,9 +47,9 @@ rescue IOError => e
 end
 
 # Replace with your actual file paths and password
-input_file_path = "/mnt/c/Users/kindu/AppData/LocalLow/ZeekerssRBLX/Lethal Company/LCSaveFile4"
-output_file_path = "/mnt/c/Users/kindu/AppData/LocalLow/ZeekerssRBLX/Lethal Company/LCSaveFile4.decrypted"
-encrypted_output_file_path = "/mnt/c/Users/kindu/AppData/LocalLow/ZeekerssRBLX/Lethal Company/LCSaveFile2"
+input_file_path = "/mnt/c/Users/kindu/AppData/LocalLow/ZeekerssRBLX/Lethal Company/LCSaveFile1"
+output_file_path = "/mnt/c/Users/kindu/AppData/LocalLow/ZeekerssRBLX/Lethal Company/LCSaveFile1.decrypted"
+encrypted_output_file_path = "/mnt/c/Users/kindu/AppData/LocalLow/ZeekerssRBLX/Lethal Company/LCSaveFile1"
 password = "lcslime14a5"
 
 # Decrypting and processing the file

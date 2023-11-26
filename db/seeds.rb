@@ -7,3 +7,4 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+Save.create(save_data: JSON.parse(File.open(Rails.root.join('poc/clean_example_3.json')).read))

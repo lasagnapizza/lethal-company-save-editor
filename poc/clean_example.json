@@ -1,0 +1,112 @@
+{
+  "Stats_StepsTaken": {
+    "__type": "int",
+    "value": 0
+  },
+  "Stats_ValueCollected": {
+    "__type": "int",
+    "value": 0
+  },
+  "Stats_Deaths": {
+    "__type": "int",
+    "value": 0
+  },
+  "Stats_DaysSpent": {
+    "__type": "int",
+    "value": 0
+  },
+  "RandomSeed": {
+    "__type": "int",
+    "value": 0
+  },
+  "DeadlineTime": {
+    "__type": "int",
+    "value": 3240
+  },
+  "ShipUnlockStored_JackOLantern": {
+    "__type": "bool",
+    "value": false
+  },
+  "ShipUnlockStored_Inverse Teleporter": {
+    "__type": "bool",
+    "value": false
+  },
+  "ShipUnlockStored_Loud horn": {
+    "__type": "bool",
+    "value": false
+  },
+  "ShipUnlockStored_Signal transmitter": {
+    "__type": "bool",
+    "value": false
+  },
+  "ShipUnlockStored_Bunkbeds": {
+    "__type": "bool",
+    "value": false
+  },
+  "ShipUnlockStored_Romantic table": {
+    "__type": "bool",
+    "value": false
+  },
+  "ShipUnlockStored_Table": {
+    "__type": "bool",
+    "value": false
+  },
+  "ShipUnlockStored_Record player": {
+    "__type": "bool",
+    "value": false
+  },
+  "ShipUnlockStored_Shower": {
+    "__type": "bool",
+    "value": false
+  },
+  "ShipUnlockStored_Toilet": {
+    "__type": "bool",
+    "value": false
+  },
+  "ShipUnlockStored_File Cabinet": {
+    "__type": "bool",
+    "value": false
+  },
+  "ShipUnlockStored_Cupboard": {
+    "__type": "bool",
+    "value": false
+  },
+  "ShipUnlockStored_Television": {
+    "__type": "bool",
+    "value": false
+  },
+  "ShipUnlockStored_Teleporter": {
+    "__type": "bool",
+    "value": false
+  },
+  "StoryLogs": {
+    "__type": "System.Int32[],mscorlib",
+    "value": [
+      0
+    ]
+  },
+  "GroupCredits": {
+    "__type": "int",
+    "value": 60
+  },
+  "CurrentPlanetID": {
+    "__type": "int",
+    "value": 0
+  },
+  "ProfitQuota": {
+    "__type": "int",
+    "value": 130
+  },
+  "QuotasPassed": {
+    "__type": "int",
+    "value": 0
+  },
+  "QuotaFulfilled": {
+    "__type": "int",
+    "value": 0
+  },
+  "FileGameVers": {
+    "__type": "int",
+    "value": 40
+  }
+}

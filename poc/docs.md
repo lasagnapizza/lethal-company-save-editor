@@ -66,3 +66,22 @@
 # Recently found
 55,
 80,
+
+# ShipItems
+green_suite => 1,
+hazard_suit => 2,
+pijama_suit => 3,
+cozy_lights => 4,
+teleporter => 5,
+television => 6,
+cupboard => 7,
+file_cabinet => 8,
+toilet => 9,
+shower => 10,
+record_player => 12,
+table => 13,
+romantic_table => 14,
+bunkbeds => 15,
+loud_horn => 18,
+inverse_teleporter => 19,
+pumpkin => 20,

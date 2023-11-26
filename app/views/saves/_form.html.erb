@@ -1,0 +1,41 @@
+<%= form_with(model: save) do |form| %>
+  <% if save.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(save.errors.count, "error") %> prohibited this save from being saved:</h2>
+
+      <ul>
+        <% save.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_area :description %>
+  </div>
+
+  <% Save::CONSTANT_FIELDS.each do |field| %>
+    <div class="field">
+      <%= form.label field.underscore.humanize %>
+      <%= form_field_for(form, @save, field) %>
+    </div>
+  <% end %>
+
+  <% Save::SHIP_ITEM_IDS.keys.each do |field| %>
+    <div class="field">
+      <%= form.label field.underscore.humanize %>
+      <%= form.check_box field.underscore, checked: @save.send(field.underscore) %>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
