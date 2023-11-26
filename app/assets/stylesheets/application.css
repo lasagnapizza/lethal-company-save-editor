@@ -1,15 +1,44 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+*= require_tree .
+*= require_self
+*/
+
+ @font-face {
+  font-family: "Perfect DOS VGA 437";
+  src: url("PerfectDOSVGA437.woff2") format("woff2"),
+      url("PerfectDOSVGA437.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBM 3270";
+  src: url("3270-Regular.woff2") format("woff2"),
+      url("3270-Regular.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBM 3270 Condensed";
+  src: url("3270Condensed.woff2") format("woff2"),
+      url("3270Condensed.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBM 3270 Semi-Condensed";
+  src: url("3270SemiCondensed.woff2") format("woff2"),
+      url("3270SemiCondensed.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  font-family: "Perfect DOS VGA 437";
+}
