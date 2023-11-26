@@ -1,0 +1,21 @@
+<h1>Sign In</h1>
+
+<%= form_with url: sessions_path, local: true do |form| %>
+  <div class="field">
+    <%= form.label :username %>
+    <%= form.text_field :username, autofocus: true %>
+  </div>
+
+  <div class="field">
+    <%= form.label :password %>
+    <%= form.password_field :password %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Sign In" %>
+  </div>
+<% end %>
+
+<div class="options">
+  <%= link_to "Sign Up", new_user_path %>
+</div>

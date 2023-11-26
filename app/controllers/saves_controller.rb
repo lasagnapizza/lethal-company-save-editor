@@ -1,60 +1,43 @@
 class SavesController < ApplicationController
-  before_action :set_save, only: %i[ show edit update destroy download ]
+  before_action :set_save, only: %i[ show download ]
+  before_action :set_internal_save, only: %i[ edit update destroy ]
 
-  # GET /saves or /saves.json
   def index
     @saves = Save.all
   end
 
-  # GET /saves/1 or /saves/1.json
   def show
   end
 
-  # GET /saves/new
   def new
-    @save = Save.new
+    @save = Current.user.saves.new
   end
 
-  # GET /saves/1/edit
   def edit
   end
 
-  # POST /saves or /saves.json
   def create
-    @save = Save.new(save_params)
+    @save = Current.user.saves.new(save_params)
 
-    respond_to do |format|
-      if @save.save
-        format.html { redirect_to save_url(@save), notice: "Save was successfully created." }
-        format.json { render :show, status: :created, location: @save }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @save.errors, status: :unprocessable_entity }
-      end
+    if @save.save
+      redirect_to @save, notice: "Save was successfully created."
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /saves/1 or /saves/1.json
   def update
-    respond_to do |format|
-      if @save.update(save_params)
-        format.html { redirect_to save_url(@save), notice: "Save was successfully updated." }
-        format.json { render :show, status: :ok, location: @save }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @save.errors, status: :unprocessable_entity }
-      end
+    if @save.update(save_params)
+      redirect_to @save, notice: "Save was successfully updated."
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
-  # DELETE /saves/1 or /saves/1.json
   def destroy
     @save.destroy!
 
-    respond_to do |format|
-      format.html { redirect_to saves_url, notice: "Save was successfully destroyed." }
-      format.json { head :no_content }
-    end
+    redirect_to saves_path, notice: "Save was successfully destroyed."
   end
 
   def download
@@ -62,12 +45,15 @@ class SavesController < ApplicationController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
+
   def set_save
     @save = Save.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
+  def set_internal_save
+    @save = Current.user.saves.find(params[:id])
+  end
+
   def save_params
     params.require(:save).permit(:title, :description, *Save::CONSTANT_FIELDS.map(&:underscore), *Save::SHIP_ITEM_IDS.keys)
   end

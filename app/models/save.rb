@@ -36,6 +36,8 @@ class Save < ApplicationRecord
   after_initialize :define_dynamic_methods
   after_initialize :set_defaults
 
+  belongs_to :user, optional: true
+
   def save_file
     encrypt_aes(save_data_to_ordered_json, "lcslime14a5")
   end
