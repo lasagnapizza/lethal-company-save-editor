@@ -1,8 +1,8 @@
-require 'openssl'
-require 'json'
+require "openssl"
+require "json"
 
-def create_cipher(mode, password, salt, iter = 100, key_len = 16, digest = 'SHA1')
-  cipher = OpenSSL::Cipher.new('AES-128-CBC')
+def create_cipher(mode, password, salt, iter = 100, key_len = 16, digest = "SHA1")
+  cipher = OpenSSL::Cipher.new("AES-128-CBC")
   cipher.send(mode)
   cipher.key = OpenSSL::PKCS5.pbkdf2_hmac(password, salt, iter, key_len, digest)
   cipher.iv = salt if mode == :decrypt # For decryption, IV is the salt
@@ -12,7 +12,7 @@ end
 def decrypt_aes(encrypted_data, password)
   iv = encrypted_data[0..15] # Extract IV from the start of the data
   cipher = create_cipher(:decrypt, password, iv)
-  encrypted_data = encrypted_data[16..-1] # The rest is the encrypted data
+  encrypted_data = encrypted_data[16..] # The rest is the encrypted data
   cipher.update(encrypted_data) + cipher.final
 rescue OpenSSL::Cipher::CipherError => e
   puts "Error decrypting data: #{e.message}"
@@ -20,10 +20,10 @@ rescue OpenSSL::Cipher::CipherError => e
 end
 
 def encrypt_aes(data, password)
-  cipher = OpenSSL::Cipher.new('AES-128-CBC')
+  cipher = OpenSSL::Cipher.new("AES-128-CBC")
   cipher.encrypt
   iv = cipher.random_iv # Generate a random IV for encryption
-  cipher.key = OpenSSL::PKCS5.pbkdf2_hmac(password, iv, 100, 16, 'SHA1')
+  cipher.key = OpenSSL::PKCS5.pbkdf2_hmac(password, iv, 100, 16, "SHA1")
   cipher.iv = iv
   encrypted_data = cipher.update(data) + cipher.final
   iv + encrypted_data # Prepend IV to encrypted data
@@ -33,21 +33,17 @@ rescue OpenSSL::Cipher::CipherError => e
 end
 
 def read_save_file(file_path)
-  begin
-    File.binread(file_path)
-  rescue Errno::ENOENT => e
-    puts "Error reading file: #{e.message}"
-    nil
-  end
+  File.binread(file_path)
+rescue Errno::ENOENT => e
+  puts "Error reading file: #{e.message}"
+  nil
 end
 
 def write_to_file(file_path, data)
-  begin
-    File.open(file_path, 'wb') { |file| file.write(data) }
-    puts "Data written to #{file_path}"
-  rescue IOError => e
-    puts "Error writing to file: #{e.message}"
-  end
+  File.binwrite(file_path, data)
+  puts "Data written to #{file_path}"
+rescue IOError => e
+  puts "Error writing to file: #{e.message}"
 end
 
 # Replace with your actual file paths and password
@@ -77,4 +73,3 @@ if encrypted_data
     end
   end
 end
-
