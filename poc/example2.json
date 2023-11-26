@@ -1,0 +1,298 @@
+{
+  "shipScrapValues": {
+    "__type": "System.Int32[],mscorlib",
+    "value": [
+      28,
+      49
+    ]
+  },
+  "shipGrabbableItemIDs": {
+    "__type": "System.Int32[],mscorlib",
+    "value": [
+      9,
+      9,
+      9,
+      9,
+      9,
+      9,
+      9
+    ]
+  },
+  "shipGrabbableItemPos": {
+    "__type": "UnityEngine.Vector3[],UnityEngine.CoreModule",
+    "value": [
+      {
+        "x": 7.86259651,
+        "y": 1.80676079,
+        "z": -17.0356846
+      },
+      {
+        "x": 7.630293,
+        "y": 1.55783463,
+        "z": -15.0057783
+      },
+      {
+        "x": 5.0876503,
+        "y": 0.381714344,
+        "z": -14.3383532
+      },
+      {
+        "x": 7.96546364,
+        "y": 2.56930685,
+        "z": -16.97165
+      },
+      {
+        "x": 4.59202766,
+        "y": 2.46052217,
+        "z": -15.4808369
+      },
+      {
+        "x": 7.630293,
+        "y": 1.55783463,
+        "z": -15.0057783
+      },
+      {
+        "x": 4.86409,
+        "y": 0.401714325,
+        "z": -15.4637537
+      }
+    ]
+  }
+
+  "Stats_StepsTaken": {
+    "__type": "int",
+    "value": 165246
+  },
+  "Stats_ValueCollected": {
+    "__type": "int",
+    "value": 2326
+  },
+  "Stats_Deaths": {
+    "__type": "int",
+    "value": 12
+  },
+  "Stats_DaysSpent": {
+    "__type": "int",
+    "value": 21
+  },
+  "RandomSeed": {
+    "__type": "int",
+    "value": 92529520
+  },
+  "DeadlineTime": {
+    "__type": "int",
+    "value": 3240
+  },
+  "UnlockedShipObjects": {
+    "__type": "System.Int32[],mscorlib",
+    "value": [
+      4,
+      5,
+      6,
+      7,
+      8,
+      15,
+      16,
+      19
+    ]
+  },
+  "ShipUnlockStored_JackOLantern": {
+    "__type": "bool",
+    "value": false
+  },
+  "ShipUnlockStored_Inverse Teleporter": {
+    "__type": "bool",
+    "value": false
+  },
+  "ShipUnlockStored_Loud horn": {
+    "__type": "bool",
+    "value": false
+  },
+  "ShipUnlockStored_Signal transmitter": {
+    "__type": "bool",
+    "value": false
+  },
+  "ShipUnlockRot_Terminal": {
+    "__type": "Vector3",
+    "value": {
+      "x": 270.019775,
+      "y": 327.685059,
+      "z": 0
+    }
+  },
+  "ShipUnlockPos_Terminal": {
+    "__type": "Vector3",
+    "value": {
+      "x": 10.042078,
+      "y": 1.930097,
+      "z": -11.6898651
+    }
+  },
+  "ShipUnlockMoved_Terminal": {
+    "__type": "bool",
+    "value": true
+  },
+  "ShipUnlockStored_Bunkbeds": {
+    "__type": "bool",
+    "value": true
+  },
+  "ShipUnlockStored_Romantic table": {
+    "__type": "bool",
+    "value": false
+  },
+  "ShipUnlockStored_Table": {
+    "__type": "bool",
+    "value": false
+  },
+  "ShipUnlockStored_Record player": {
+    "__type": "bool",
+    "value": false
+  },
+  "ShipUnlockStored_Shower": {
+    "__type": "bool",
+    "value": false
+  },
+  "ShipUnlockStored_Toilet": {
+    "__type": "bool",
+    "value": false
+  },
+  "ShipUnlockStored_File Cabinet": {
+    "__type": "bool",
+    "value": true
+  },
+  "ShipUnlockRot_Cupboard": {
+    "__type": "Vector3",
+    "value": {
+      "x": 270,
+      "y": 175.632874,
+      "z": 0
+    }
+  },
+  "ShipUnlockPos_Cupboard": {
+    "__type": "Vector3",
+    "value": {
+      "x": 8.303206,
+      "y": 1.63490534,
+      "z": -16.92641
+    }
+  },
+  "ShipUnlockMoved_Cupboard": {
+    "__type": "bool",
+    "value": true
+  },
+  "ShipUnlockStored_Cupboard": {
+    "__type": "bool",
+    "value": false
+  },
+  "ShipUnlockRot_Television": {
+    "__type": "Vector3",
+    "value": {
+      "x": -1.70754731E-06,
+      "y": 235.086243,
+      "z": 89.99511
+    }
+  },
+  "ShipUnlockPos_Television": {
+    "__type": "Vector3",
+    "value": {
+      "x": 10.1517658,
+      "y": 4.092429,
+      "z": -12.0233116
+    }
+  },
+  "ShipUnlockMoved_Television": {
+    "__type": "bool",
+    "value": true
+  },
+  "ShipUnlockStored_Television": {
+    "__type": "bool",
+    "value": false
+  },
+  "ShipUnlockRot_Teleporter": {
+    "__type": "Vector3",
+    "value": {
+      "x": 270,
+      "y": 64.7,
+      "z": 0
+    }
+  },
+  "ShipUnlockPos_Teleporter": {
+    "__type": "Vector3",
+    "value": {
+      "x": 3.98504925,
+      "y": 2.14171433,
+      "z": -14.2103186
+    }
+  },
+  "ShipUnlockMoved_Teleporter": {
+    "__type": "bool",
+    "value": true
+  },
+  "ShipUnlockStored_Teleporter": {
+    "__type": "bool",
+    "value": false
+  },
+  "EnemyScans": {
+    "__type": "System.Int32[],mscorlib",
+    "value": [
+      15,
+      13,
+      5,
+      14,
+      7,
+      2
+    ]
+  },
+  "StoryLogs": {
+    "__type": "System.Int32[],mscorlib",
+    "value": [
+      0,
+      1,
+      4
+    ]
+  },
+  "GroupCredits": {
+    "__type": "int",
+    "value": 851
+  },
+  "CurrentPlanetID": {
+    "__type": "int",
+    "value": 3
+  },
+  "ProfitQuota": {
+    "__type": "int",
+    "value": 966
+  },
+  "QuotasPassed": {
+    "__type": "int",
+    "value": 5
+  },
+  "QuotaFulfilled": {
+    "__type": "int",
+    "value": 0
+  },
+  "ShipUnlockRot_File Cabinet": {
+    "__type": "Vector3",
+    "value": {
+      "x": 270,
+      "y": 353.235626,
+      "z": 0
+    }
+  },
+  "ShipUnlockPos_File Cabinet": {
+    "__type": "Vector3",
+    "value": {
+      "x": 7.85315657,
+      "y": 1.188857,
+      "z": -11.1993618
+    }
+  },
+  "ShipUnlockMoved_File Cabinet": {
+    "__type": "bool",
+    "value": true
+  },
+  "FileGameVers": {
+    "__type": "int",
+    "value": 40
+  }
+}

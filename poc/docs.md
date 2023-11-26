@@ -1,5 +1,6 @@
 # shipGrabbableItemIDs
 1: boombox
+9: pro-flashlight
 10: shovel
 12: extension ladder
 13: tzp-inhalant
@@ -61,3 +62,7 @@
 6: Dine
 7: Offense
 8: Titan
+
+# Recently found
+55,
+80,
