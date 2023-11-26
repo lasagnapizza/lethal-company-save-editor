@@ -1,4 +1,6 @@
 class SavesController < ApplicationController
+  skip_before_action :require_login, only: %i[ index show download ]
+
   before_action :set_save, only: %i[ show download ]
   before_action :set_internal_save, only: %i[ edit update destroy ]
 

@@ -39,6 +39,53 @@
   font-display: swap;
 }
 
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 body {
+  background: #000;
+  color: #58c736;
   font-family: "Perfect DOS VGA 437";
+  font-size: 16pt;
+}
+
+a {
+  color: #58c736;
+}
+
+canvas {
+  z-index: -1;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.wrapper {
+  margin: 0 auto;
+  width: 100%;
+  max-width: 720px;
+  border-radius: 2rem;
+  padding: 2rem;
+  border: 1rem solid;
+  border-bottom-color: #121212;
+  border-left-color: #080808;
+  border-right-color: #080808;
+  border-top-color: #020202;
+  box-shadow: inset 0 0 18rem black, inset 0 0 3rem black, 0 0 10rem black;
+  background: #1e5e10;
+  background-image: url('crt.png');
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+strong {
+  font-weight: normal;
+  color: #50eb21;
 }
