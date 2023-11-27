@@ -1,9 +1,19 @@
-<%= render @save %>
+<h1><%= @save.title %></h1>
+<p>by <%= @save.user&.username || "anon" %></p>
+
+<fieldset>
+  <div>
+    <p><%= @save.description %></p>
+  </div>
+</fieldset>
+
 
 <div>
-  <%= link_to "Download this save", download_save_path(@save) %> |
-  <%= link_to "Edit this save", edit_save_path(@save) %> |
-  <%= link_to "Back to saves", saves_path %>
+  <%= link_to "Download this save", download_save_path(@save) %>
+  <% if @save.user.present? && @save.user == Current.user %>
+    <%= link_to "Edit this save", edit_save_path(@save) %> |
+    <%= link_to "Back to saves", saves_path %>
 
-  <%= button_to "Destroy this save", @save, method: :delete %>
+    <%= button_to "Destroy this save", @save, method: :delete %>
+  <% end %>
 </div>

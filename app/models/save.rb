@@ -19,7 +19,7 @@ class Save < ApplicationRecord
     "bunkbeds" => 15,
     "loud_horn" => 18,
     "inverse_teleporter" => 19,
-    "pumpkin" => 20,
+    "pumpkin" => 20
   }
 
   CONSTANT_FIELDS.each do |field|
@@ -37,6 +37,12 @@ class Save < ApplicationRecord
   after_initialize :set_defaults
 
   belongs_to :user, optional: true
+
+  before_validation :set_slug
+
+  def set_slug
+    self.slug = title.parameterize
+  end
 
   def save_file
     encrypt_aes(save_data_to_ordered_json, "lcslime14a5")
@@ -71,10 +77,10 @@ class Save < ApplicationRecord
       "ProfitQuota",
       "QuotasPassed",
       "QuotaFulfilled",
-      "FileGameVers",
+      "FileGameVers"
     ]
 
-    original_data = self.save_data.dup
+    original_data = save_data.dup
     ordered_hash = {}
     key_order.each do |key|
       next unless original_data[key].is_a?(Hash)
@@ -116,11 +122,11 @@ class Save < ApplicationRecord
 
   def set_defaults
     default_data = self.class.default_save_data
-    self.save_data = default_data if self.save_data == {}
+    self.save_data = default_data if save_data == {}
   end
 
   def self.default_save_data
-    @default_save_data ||= JSON.parse(File.read(Rails.root.join('config', 'defaults', 'save_default.json')))
+    @default_save_data ||= JSON.parse(File.read(Rails.root.join("config", "defaults", "save_default.json")))
   end
 
   def add_to_unlocked_ship_objects(item_id)

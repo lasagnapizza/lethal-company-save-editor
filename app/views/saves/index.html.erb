@@ -1,11 +1,8 @@
-<h1>Saves</h1>
+<h1>Save registry</h1>
 
 <div id="saves">
   <% @saves.each do |save| %>
     <%= render save %>
-    <p>
-      <%= link_to "Show this save", save %>
-    </p>
   <% end %>
 </div>
 

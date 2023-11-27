@@ -1,10 +1,13 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
-Save.create(save_data: JSON.parse(File.open(Rails.root.join('poc/clean_example_3.json')).read))
+Save.create(
+  title: "Clean Save v40",
+  slug: "clean-save-v40",
+  description: "This is a clean save! Nothing fancy, just the default save when you start the game.",
+  save_data: JSON.parse(File.read(Rails.root.join("poc/clean_example_3.json")))
+)
+
+Save.create(
+  title: "Another clean Save v40",
+  slug: "another-clean-save-v40",
+  description: "Based on the clean save but has more money :) <3",
+  save_data: JSON.parse(File.read(Rails.root.join("poc/clean_example.json")))
+)

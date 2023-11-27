@@ -10,20 +10,22 @@
     <%= preload_link_tag "/assets/PerfectDOSVGA437.woff2"  %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.css" />
-    <script src="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.min.js"></script>
   </head>
 
   <body class="crt" data-controller="background">
     <div class="wrapper">
       <div data-simplebar>
+        <%= link_to "LCSaveEditor v1.0", root_path %> |
         <% if Current.user.present? %>
-          <p>> Welcome back, <%= Current.user.username %>!</p>
-          <%= link_to "Edit Profile", edit_user_path(Current.user) %> |
-          <%= button_to "Sign Out", sessions_path, method: :delete %>
+          <%= link_to "edit profile", edit_user_path(Current.user) %> |
+          <%= link_to "exit", sessions_path, method: :delete %>
         <% else %>
-          <%= link_to "Sign In", new_session_path %> |
-          <%= link_to "Sign Up", new_user_path %>
+          <%= link_to "login", new_session_path %> |
+          <%= link_to "sign up", new_user_path %>
+        <% end %>
+
+        <% if Current.user.present? %>
+          <p>> Welcome back, <%= Current.user.username %></p>
         <% end %>
 
         <% flash.each do |type, message| %>

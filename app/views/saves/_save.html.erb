@@ -1,6 +1,6 @@
 <fieldset id="<%= dom_id save %>">
-  <legend><%= link_to "#{save.title} by #{ save.user&.username || 'Anonymous'}", save %></legend>
-
-  <p><%= save.description %></p>
-  <%= save.save_data_to_ordered_json %>
+  <legend><%= link_to "#{save.title} by #{ save.user&.username || 'anon'}", save %></legend>
+  <div>
+    <p><%= save.description %></p>
+  </div>
 </fieldset>

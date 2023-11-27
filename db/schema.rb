@@ -15,7 +15,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_26_215656) do
   enable_extension "plpgsql"
 
   create_table "saves", force: :cascade do |t|
-    t.string "title"
+    t.string "title", null: false
+    t.string "slug", null: false
     t.text "description"
     t.jsonb "save_data", default: {}
     t.datetime "created_at", null: false
