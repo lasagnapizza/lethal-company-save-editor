@@ -7,6 +7,10 @@ input, textarea, fieldset, .checkmark {
   animation: boxShadow 10s infinite;
 }
 
+h1 {
+	animation: track 5ms infinite;
+}
+
 .crt::after {
   content: " ";
   display: block;
@@ -166,3 +170,37 @@ input, textarea, fieldset, .checkmark {
   }
 }
 
+@keyframes track {
+
+  40% {
+    opacity: 1;
+    top: 0;
+    left: 0;
+    transform: scale(1, 1);
+    transform: skew(0, 0);
+  }
+
+  41% {
+    opacity: 0.8;
+    top: 0px;
+    left: -100px;
+    transform: scale(1, 1.2);
+    transform: skew(20deg, 0);
+  }
+
+  42% {
+    opacity: 0.8;
+    top: 0px;
+    left: 100px;
+    transform: scale(1, 1.2);
+    transform: skew(-40deg, 0);
+  }
+
+  43% {
+    opacity: 1;
+    top: 0;
+    left: 0;
+    transform: scale(1, 1);
+    transform: skew(0, 0);
+  }
+}
