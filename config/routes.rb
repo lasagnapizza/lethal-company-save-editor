@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   get "up" => "rails/health#show", :as => :rails_health_check
 
+  get "/help", to: "pages#help"
+
   resources :users, only: [:new, :create, :edit, :update]
   resources :sessions, only: [:new, :create] do
     collection do

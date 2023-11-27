@@ -1,5 +1,5 @@
 class SavesController < ApplicationController
-  skip_before_action :require_login, only: %i[index show download]
+  skip_before_action :require_login, only: %i[index show new create download]
 
   before_action :set_save, only: %i[show download]
   before_action :set_internal_save, only: %i[edit update destroy]
@@ -12,14 +12,14 @@ class SavesController < ApplicationController
   end
 
   def new
-    @save = Current.user.saves.new
+    @save = Save.new
   end
 
   def edit
   end
 
   def create
-    @save = Current.user.saves.new(save_params)
+    @save = Save.new(save_params)
 
     if @save.save
       redirect_to @save, notice: "Save was successfully created"
@@ -43,7 +43,8 @@ class SavesController < ApplicationController
   end
 
   def download
-    send_data @save.save_file, filename: "LCSaveFile1", disposition: "attachment"
+    @save.increament_download_count!
+    send_data @save.save_file, filename: @save.slug, disposition: "attachment"
   end
 
   private

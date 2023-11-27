@@ -1,5 +1,7 @@
 <h1>All saves</h1>
 
+<p>> <%= link_to "New save", new_save_path %></p>
+
 <div id="saves">
   <% @saves.each do |save| %>
     <%= render save %>

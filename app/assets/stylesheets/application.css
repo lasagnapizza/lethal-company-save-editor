@@ -32,7 +32,7 @@ body {
   padding: 1.5rem 0;
 }
 
-a, button, input, label {
+a, button, input, label, select {
   cursor: url("ItStealsCursor.png"), auto;
 }
 
@@ -92,6 +92,21 @@ h1, h2, h3, h4, h5, h6, strong {
   color: #50eb21;
 }
 
+h1:has(+ .subtitle) {
+  margin-bottom: 1rem;
+}
+
+h1 + .subtitle {
+  margin-top: 0;
+}
+
+hr {
+  height: 3px;
+  margin: 2rem 0;
+  background-color: #47a72a;
+  border: none;
+}
+
 .field {
   padding-bottom: 1rem;
 }
@@ -102,19 +117,26 @@ h1, h2, h3, h4, h5, h6, strong {
   color: #50eb21;
 }
 
-input[type="text"], input[type="email"], input[type="password"], input[type="submit"], textarea, button {
+input[type="text"], input[type="email"], input[type="password"], input[type="submit"], textarea, button, select {
   display: block;
   width: 100%;
   border: 3px solid #3a8524;
-  background: transparent;
+  background-color: transparent;
   color: #FFF;
   padding: 0.6rem;
   font-size: 20px;
   font-family: "Perfect DOS VGA 437";
 }
 
+select option {
+  background-color: #1e5e10;
+  color: #FFF;
+}
+
 input[type="submit"], button {
   width: auto;
+  padding: 0.6rem 1rem;
+  background-color: #1e5e10;
 }
 
 textarea {
@@ -138,20 +160,23 @@ fieldset legend a {
   text-decoration: none;
 }
 
+code {
+  color: #50eb21;
+}
+
 .box {
   border: 3px solid #47a72a;
   padding: 1rem;
+  margin-bottom: 1rem;
 }
 
 .with-columns {
   column-count: 3;
   column-width: 200px;
-  column-gap: 1rem;
 }
 
 .checkbox {
   padding-left: 35px;
-  user-select: none;
   position: relative;
 }
 

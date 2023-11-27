@@ -19,6 +19,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_26_215656) do
     t.string "slug", null: false
     t.text "description"
     t.jsonb "save_data", default: {}
+    t.integer "download_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"

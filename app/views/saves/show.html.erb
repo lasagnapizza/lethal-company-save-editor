@@ -1,23 +1,65 @@
-<h1>Save: <%= @save.title %></h1>
-<p>Created by <%= link_to_if @save.user, @save.user&.username || "anon", "#" %></p>
+<p><%= link_to "< Go back", saves_path %></p>
 
-<div class="box">
-  <div style="white-space: pre-wrap;"><%= @save.description %></div>
-</div>
+<h1>#<%= @save.id %> <%= @save.title %></h1>
+<h4 class="subtitle">
+  > Created by <%= link_to_if @save.user, @save.user&.username || "anon", "#" %>, downloaded <%= @save.download_count %> <%= "time".pluralize(@save.download_count) %>.
+  <% if @save.user.present? && @save.user == Current.user %>
+    |
+    <%= link_to "edit", edit_save_path(@save) %>
+  <% end %>
+</h4>
 
-<% Save::CONSTANT_FIELDS.each do |field| %>
-  <%= field.underscore.humanize %>
-  <%= @save.save_data[field]["value"] %>
-<% end %>
+<fieldset>
+  <legend>Description</legend>
+  <div>
+    <div style="white-space: pre-wrap;"><%= @save.description %></div>
+  </div>
+</fieldset>
 
-<% Save::SHIP_ITEM_IDS.keys.each do |field| %>
-  <%= field.underscore.humanize %>
-  <%= @save.send(field.underscore) %>
-<% end %>
+<fieldset>
+  <legend>Run data</legend>
+  <div>
+    <div>
+      <% Save::MOON_FIELD.each do |field| %>
+        <%= field.underscore.humanize %>: <strong><%= @save.current_planet_name %></strong>
+      <% end %>
+    </div>
+    <br />
+    <div class="with-columns">
+      <% Save::GAME_FIELDS.each do |field| %>
+        <div>
+          <%= field.underscore.humanize %><br />
+          <strong><%= @save.save_data[field]["value"] %></strong>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend>Profit data</legend>
+  <div class="with-columns">
+    <% Save::MONEY_FIELDS.each do |field| %>
+      <div class="">
+        <%= field.underscore.humanize %><br />
+        <strong><%= @save.save_data[field]["value"] %></strong>
+      </div>
+    <% end %>
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend>Ship items</legend>
+  <div class="with-columns">
+    <% @save.available_ship_items.each do |item| %>
+        <div>✔ <%= item[:name].underscore.humanize %></div>
+    <% end %>
+  </div>
+  <div><%= "No ship items selected." if @save.available_ship_items.empty? %></div>
+</fieldset>
 
 <div>
-  <%= button_to "Download this save", download_save_path(@save) %>
-  <% if @save.user.present? && @save.user == Current.user %>
-    <%= link_to "Edit this save", edit_save_path(@save) %>
-  <% end %>
+  <%= button_to "Download save", download_save_path(@save) %>
 </div>
+
+<p>> Help, <%= link_to "how do you use the save?", help_path %></p>

@@ -27,9 +27,29 @@
   </fieldset>
 
   <fieldset>
-    <legend>Run state</legend>
+    <legend>Run</legend>
+    <div>
+      <% Save::MOON_FIELD.each do |field| %>
+        <div class="field">
+          <%= form.label field.underscore.humanize %>
+          <%= form.select field.underscore, Save::MOON_IDS %>
+        </div>
+      <% end %>
+    </div>
     <div class="with-columns">
-      <% Save::CONSTANT_FIELDS.each do |field| %>
+      <% Save::GAME_FIELDS.each do |field| %>
+        <div class="field">
+          <%= form.label field.underscore.humanize %>
+          <%= form.text_field field.underscore, value: save.save_data[field]["value"], data: { controller: "number-input", number_input_target: "input", action: "keypress->number-input#isNumber" } %>
+        </div>
+      <% end %>
+    </div>
+ </fieldset>
+
+  <fieldset>
+    <legend>Profit</legend>
+    <div class="with-columns">
+      <% Save::MONEY_FIELDS.each do |field| %>
         <div class="field">
           <%= form.label field.underscore.humanize %>
           <%= form.text_field field.underscore, value: save.save_data[field]["value"], data: { controller: "number-input", number_input_target: "input", action: "keypress->number-input#isNumber" } %>

@@ -5,6 +5,7 @@ class CreateSaves < ActiveRecord::Migration[7.1]
       t.string :slug, null: false
       t.text :description
       t.jsonb :save_data, default: {}
+      t.integer :download_count, default: 0
 
       t.timestamps
     end

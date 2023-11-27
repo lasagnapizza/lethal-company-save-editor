@@ -1,0 +1,50 @@
+<h1>Help! How does this work?</h1>
+
+<p>Hey there! Don't worry, I'll explain to you what this is about.</p>
+
+<p>
+  This is a web tool to create save files for the game <%= link_to "Lethal Company", "https://store.steampowered.com/app/1966720/Lethal_Company/", target: "_blank" %>.
+  It allows players to create custom save files with different run configurations allowing them to play the game in their desired setting.
+</p>
+
+<h2>Downloading and Using a Save File</h2>
+
+<ol>
+  <li>Browse the saves list and click the download button at the bottom.</li>
+  <li>A file called will be downloaded, with a filename similar to its title.</li>
+  <li>Navigate to the save folder. In Windows:</li>
+</ol>
+
+<pre><code>%USERPROFILE%\AppData\LocalLow\ZeekerssRBLX\Lethal Company</code></pre>
+
+<p>Backup one of your existing save files, for example <code>LCSaveFile1</code>, and rename the downloaded file to <code>LCSaveFile1</code>. This will replace the save in the first slot of the game.
+
+<h2>Creating a Save File</h2>
+
+<p>If you are <%= link_to_unless Current.user, "logged in", new_session_path %>, you can create and customize save files. This application allows you to configure three main categories:</p>
+
+<p>Run:</p>
+
+<ul>
+  <li>Moon: One of the moons, the ship will be spawned there.</li>
+  <li>Random seed: A unique random seed for the run.</li>
+  <li>Deadline time: Values such as 3240 mean 3 days left until quota, while 1080 signifies 1 day left.</li>
+  <li>Quotas passed: The number of quotas successfully achieved.</li>
+</ul>
+
+<p>Profit:</p>
+
+<ul>
+  <li>Group credits: The total credits in the bank.</li>
+  <li>Profit quota: The amount required for the next quota.</li>
+  <li>Quota fulfilled: The amount obtained so far.</li>
+</ul>
+
+<p>Ship Items:</p>
+
+<ul>
+  <li>Customize the available tools from the shop, including lights, shovels, walkie talkies, stun grenades, and boomboxes.</li>
+</ul>
+
+<p>
+  After creating your save file, scroll to the bottom and click download. Follow the instructions above on how to use a save file.</p>

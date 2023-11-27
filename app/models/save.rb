@@ -1,7 +1,13 @@
 class Save < ApplicationRecord
   store_accessor :save_data
 
-  CONSTANT_FIELDS = %w[RandomSeed DeadlineTime GroupCredits CurrentPlanetID ProfitQuota QuotasPassed QuotaFulfilled FileGameVers]
+  MOON_FIELD = %w[CurrentPlanetID]
+  GAME_FIELDS = %w[RandomSeed DeadlineTime QuotasPassed]
+  MONEY_FIELDS = %w[GroupCredits ProfitQuota QuotaFulfilled]
+  PUBLIC_CONSTANT_FIELDS = MOON_FIELD + GAME_FIELDS + MONEY_FIELDS
+  PRIVATE_CONSTANT_FIELDS = %w[FileGameVers]
+  CONSTANT_FIELDS = PUBLIC_CONSTANT_FIELDS + PRIVATE_CONSTANT_FIELDS
+
   SHIP_ITEM_IDS = {
     "green_suite" => 1,
     "hazard_suit" => 2,
@@ -20,6 +26,18 @@ class Save < ApplicationRecord
     "loud_horn" => 18,
     "inverse_teleporter" => 19,
     "pumpkin" => 20
+  }
+
+  MOON_IDS = {
+    "Experimentation" => 0,
+    "Assurance" => 1,
+    "Vow" => 2,
+    "Company Building" => 3,
+    "March" => 4,
+    "Rend" => 5,
+    "Dine" => 6,
+    "Offense" => 7,
+    "Titan" => 8
   }
 
   CONSTANT_FIELDS.each do |field|
@@ -45,6 +63,21 @@ class Save < ApplicationRecord
 
   def set_slug
     self.slug = title.parameterize
+  end
+
+  def current_planet_name
+    MOON_IDS.invert[self.current_planet_id]
+  end
+
+  def available_ship_items
+    SHIP_ITEM_IDS.keys.select { |item_name| self.send(item_name) }.map do |item_name|
+      { name: item_name, id: SHIP_ITEM_IDS[item_name] }
+    end
+  end
+
+  def increament_download_count!
+    self.download_count += 1
+    self.save
   end
 
   def save_file

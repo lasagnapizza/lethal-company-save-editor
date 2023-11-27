@@ -12,22 +12,22 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="crt" data-controller="background">
+  <body class="scanlines" data-controller="background">
     <div class="wrapper">
       <div data-simplebar>
         <div>
           <%= link_to "LCSaveEditor v1.0", root_path %> |
           <%= link_to "all saves", saves_path %> |
-          <%= link_to "new save", new_save_path %> |
           <% if Current.user.present? %>
-            <%= button_to "exit", sessions_path, method: :delete, form_class: "form-as-link" %>
+            <%= button_to "logout", sessions_path, method: :delete, form_class: "form-as-link" %>
           <% else %>
             <%= link_to "sign in", new_session_path %>
           <% end %>
+          | <%= link_to "help", help_path %>
         </div>
 
         <% if Current.user.present? %>
-          <p>> Welcome back, <%= link_to Current.user.username, edit_user_path(Current.user) %></p>
+          <p>> You are logged in as <%= link_to Current.user.username, edit_user_path(Current.user) %></p>
         <% end %>
 
 
