@@ -1,10 +1,7 @@
+<p><%= link_to "Go back", @save %></p>
+
 <h1>Editing save</h1>
 
 <%= render "form", save: @save %>
 
-<br>
-
-<div>
-  <%= link_to "Show this save", @save %> |
-  <%= link_to "Back to saves", saves_path %>
-</div>
+<%= button_to "Destroy this save", @save, method: :delete %>

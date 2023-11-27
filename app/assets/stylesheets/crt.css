@@ -1,10 +1,10 @@
 /* Stolen from https://medium.com/@benjamib/retro-terminal-ui-ae9ac8eae71a */
 
-.crt {
+.crt, button, input, textarea, fieldset {
   animation: textShadow 10s infinite;
 }
 
-input, textarea, fieldset, .checkmark {
+input, textarea, fieldset, .checkmark, .box {
   animation: boxShadow 10s infinite;
 }
 

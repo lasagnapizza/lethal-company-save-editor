@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: "saves#index"
+  root to: "pages#index"
 
   get "up" => "rails/health#show", :as => :rails_health_check
 
@@ -12,7 +12,7 @@ Rails.application.routes.draw do
 
   resources :saves do
     member do
-      get :download
+      post :download
     end
   end
 end

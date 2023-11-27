@@ -1,19 +1,14 @@
-<h1><%= @save.title %></h1>
-<p>by <%= @save.user&.username || "anon" %></p>
+<h1>Save: <%= @save.title %></h1>
+<p>Created by <%= link_to_if @save.user, @save.user&.username || "anon", "#" %></p>
 
-<fieldset>
-  <div>
-    <p><%= @save.description %></p>
-  </div>
-</fieldset>
+<div class="box">
+  <div style="white-space: pre-wrap;"><%= @save.description %></div>
+</div>
 
 
 <div>
-  <%= link_to "Download this save", download_save_path(@save) %>
+  <%= button_to "Download this save", download_save_path(@save) %>
   <% if @save.user.present? && @save.user == Current.user %>
-    <%= link_to "Edit this save", edit_save_path(@save) %> |
-    <%= link_to "Back to saves", saves_path %>
-
-    <%= button_to "Destroy this save", @save, method: :delete %>
+    <%= link_to "Edit this save", edit_save_path(@save) %>
   <% end %>
 </div>

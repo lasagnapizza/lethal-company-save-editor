@@ -1,9 +1,7 @@
-<h1>Save registry</h1>
+<h1>All saves</h1>
 
 <div id="saves">
   <% @saves.each do |save| %>
     <%= render save %>
   <% end %>
 </div>
-
-<%= link_to "New save", new_save_path %>

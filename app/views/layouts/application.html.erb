@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>LethalCompanySaveEditor</title>
+    <title>LCSaveEditor v1.0</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
@@ -15,23 +15,26 @@
   <body class="crt" data-controller="background">
     <div class="wrapper">
       <div data-simplebar>
-        <%= link_to "LCSaveEditor v1.0", root_path %> |
-        <% if Current.user.present? %>
-          <%= link_to "edit profile", edit_user_path(Current.user) %> |
-          <%= link_to "exit", sessions_path, method: :delete %>
-        <% else %>
-          <%= link_to "login", new_session_path %> |
-          <%= link_to "sign up", new_user_path %>
-        <% end %>
+        <div>
+          <%= link_to "LCSaveEditor v1.0", root_path %> |
+          <%= link_to "all saves", saves_path %> |
+          <%= link_to "new save", new_save_path %> |
+          <% if Current.user.present? %>
+            <%= button_to "exit", sessions_path, method: :delete, form_class: "form-as-link" %>
+          <% else %>
+            <%= link_to "sign in", new_session_path %>
+          <% end %>
+        </div>
 
         <% if Current.user.present? %>
-          <p>> Welcome back, <%= Current.user.username %></p>
+          <p>> Welcome back, <%= link_to Current.user.username, edit_user_path(Current.user) %></p>
         <% end %>
+
 
         <% flash.each do |type, message| %>
-          <div class="flash <%= type %>">
-            <%= message %>
-          </div>
+          <p class="flash <%= type %>">
+            > <%= message %>
+          </p>
         <% end %>
 
         <%= yield %>

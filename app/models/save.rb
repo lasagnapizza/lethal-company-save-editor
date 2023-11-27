@@ -40,6 +40,9 @@ class Save < ApplicationRecord
 
   before_validation :set_slug
 
+  validates :title, presence: true, length: {maximum: 32}, allow_blank: false
+  validates :description, presence: true, length: {maximum: 1000}, allow_blank: true
+
   def set_slug
     self.slug = title.parameterize
   end

@@ -1,11 +1,11 @@
 class SavesController < ApplicationController
-  skip_before_action :require_login, only: %i[ index show download ]
+  skip_before_action :require_login, only: %i[index show download]
 
-  before_action :set_save, only: %i[ show download ]
-  before_action :set_internal_save, only: %i[ edit update destroy ]
+  before_action :set_save, only: %i[show download]
+  before_action :set_internal_save, only: %i[edit update destroy]
 
   def index
-    @saves = Save.all
+    @saves = Save.includes(:user).all
   end
 
   def show
@@ -22,7 +22,7 @@ class SavesController < ApplicationController
     @save = Current.user.saves.new(save_params)
 
     if @save.save
-      redirect_to @save, notice: "Save was successfully created."
+      redirect_to @save, notice: "Save was successfully created"
     else
       render :new, status: :unprocessable_entity
     end
@@ -30,7 +30,7 @@ class SavesController < ApplicationController
 
   def update
     if @save.update(save_params)
-      redirect_to @save, notice: "Save was successfully updated."
+      redirect_to @save, notice: "Save was successfully updated"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -39,11 +39,11 @@ class SavesController < ApplicationController
   def destroy
     @save.destroy!
 
-    redirect_to saves_path, notice: "Save was successfully destroyed."
+    redirect_to saves_path, notice: "Save was successfully destroyed"
   end
 
   def download
-    send_data @save.save_file, filename: 'LCSaveFile1', disposition: "attachment"
+    send_data @save.save_file, filename: "LCSaveFile1", disposition: "attachment"
   end
 
   private

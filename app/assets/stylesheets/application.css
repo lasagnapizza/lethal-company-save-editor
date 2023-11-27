@@ -1,6 +1,7 @@
 /*
 *= require normalize
 *= require crt
+*= require grow-wrap
 *= require_self
 */
 
@@ -8,33 +9,6 @@
   font-family: "Perfect DOS VGA 437";
   src: url("PerfectDOSVGA437.woff2") format("woff2"),
       url("PerfectDOSVGA437.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-  font-display: block;
-}
-
-@font-face {
-  font-family: "IBM 3270";
-  src: url("3270-Regular.woff2") format("woff2"),
-      url("3270-Regular.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-  font-display: block;
-}
-
-@font-face {
-  font-family: "IBM 3270 Condensed";
-  src: url("3270Condensed.woff2") format("woff2"),
-      url("3270Condensed.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-  font-display: block;
-}
-
-@font-face {
-  font-family: "IBM 3270 Semi-Condensed";
-  src: url("3270SemiCondensed.woff2") format("woff2"),
-      url("3270SemiCondensed.woff") format("woff");
   font-weight: normal;
   font-style: normal;
   font-display: block;
@@ -164,20 +138,9 @@ fieldset legend a {
   text-decoration: none;
 }
 
-.custom-fieldset {
-  position: relative;
-  margin-bottom: 2rem;
+.box {
   border: 3px solid #47a72a;
   padding: 1rem;
-}
-
-.custom-legend {
-  position: absolute;
-  top: -12px;
-  left: 10px;
-  background-color: #3a8524;
-  color: #FFF;
-  padding: 7px 15px;
 }
 
 .with-columns {
@@ -212,4 +175,15 @@ fieldset legend a {
 
 .checkbox input:checked ~ .checkmark {
   background-color: #FFF;
+}
+
+.form-as-link {
+  display: inline-block;
+}
+
+.form-as-link button {
+  border: none;
+  padding: 0;
+  text-decoration: underline;
+  color: #58c736;
 }
