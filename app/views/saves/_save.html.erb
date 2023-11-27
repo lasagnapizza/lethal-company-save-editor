@@ -1,5 +1,5 @@
-<fieldset id="<%= dom_id save %>">
-  <legend><%= link_to "#{save.title} by #{ save.user&.username || 'anon'}", save %></legend>
+<fieldset>
+  <legend><%= link_to "##{save.id} #{save.title} by #{ save.user&.username || 'anon'}", save %></legend>
   <div>
     <p><%= save.description %></p>
   </div>
