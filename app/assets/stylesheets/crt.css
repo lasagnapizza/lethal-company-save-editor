@@ -3,7 +3,7 @@
 .crt {
   animation: textShadow 10s infinite;
 }
-input, textarea {
+input, textarea, fieldset {
   animation: boxShadow 10s infinite;
 }
 

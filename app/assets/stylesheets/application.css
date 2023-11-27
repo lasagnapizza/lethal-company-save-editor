@@ -74,23 +74,40 @@ canvas {
 }
 
 .wrapper {
+  position: relative;
   margin: 0 auto;
   width: 100%;
   max-width: 840px;
-  max-height: calc(100vh - 1rem);
-  height: calc(100vh - 1rem);
+  max-height: 100dvh;
+  height: 100dvh;
+  box-shadow: inset 0 0 18rem black, inset 0 0 3rem black, 0 0 10rem black;
+  background: #1e5e10;
   border-radius: 2rem;
-  padding: 2rem;
-  border: 1rem solid;
-  border-bottom-color: #121212;
+  border: 2.5rem solid;
+  border-bottom-color: #161616;
   border-left-color: #080808;
   border-right-color: #080808;
   border-top-color: #020202;
-  box-shadow: inset 0 0 18rem black, inset 0 0 3rem black, 0 0 10rem black;
-  background: #1e5e10;
+  overflow: hidden;
+}
+
+.wrapper > div {
+  max-height: 100%;
+  padding: 2rem;
+}
+
+.wrapper::after {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  content: "";
   background-image: url('crt.png');
   background-repeat: no-repeat;
   background-size: 100% 100%;
+  pointer-events: none;
 }
 
 strong {
@@ -105,6 +122,7 @@ strong {
 .field label {
   padding-bottom: 0.5rem;
   display: block;
+  color: #50eb21;
 }
 
 input, textarea {
@@ -114,10 +132,21 @@ input, textarea {
   background: transparent;
   color: #FFF;
   padding: 0.6rem;
-  font-size: 1rem;
+  font-size: 20px;
   font-family: "Perfect DOS VGA 437";
 }
 
 textarea {
   resize: none;
+}
+
+fieldset {
+  margin-bottom: 2rem;
+  border: 3px solid #3a8524;
+}
+
+fieldset legend {
+  background: #3a8524;
+  padding: 7px 15px;
+  margin-bottom: 10px;
 }

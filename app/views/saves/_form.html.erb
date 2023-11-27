@@ -11,29 +11,38 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :description, style: "display: block" %>
-    <%= form.text_area :description %>
-  </div>
-
-  <% Save::CONSTANT_FIELDS.each do |field| %>
+ <fieldset>
+  <legend>Save information</legend>
     <div class="field">
-      <%= form.label field.underscore.humanize %>
-      <%= form_field_for(form, @save, field) %>
+      <%= form.label :title, style: "display: block" %>
+      <%= form.text_field :title %>
     </div>
-  <% end %>
 
-  <% Save::SHIP_ITEM_IDS.keys.each do |field| %>
     <div class="field">
-      <%= form.label field.underscore.humanize %>
-      <%= form.check_box field.underscore, checked: @save.send(field.underscore), class: "toggle" %>
+      <%= form.label :description, style: "display: block" %>
+      <%= form.text_area :description %>
     </div>
-  <% end %>
+  </fieldset>
+
+  <fieldset>
+    <legend>Run state</legend>
+    <% Save::CONSTANT_FIELDS.each do |field| %>
+      <div class="field">
+        <%= form.label field.underscore.humanize %>
+        <%= form_field_for(form, @save, field) %>
+      </div>
+    <% end %>
+ </fieldset>
+
+  <fieldset>
+    <legend>Ship items</legend>
+    <% Save::SHIP_ITEM_IDS.keys.each do |field| %>
+      <div class="field">
+        <%= form.label field.underscore.humanize %>
+        <%= form.check_box field.underscore, checked: @save.send(field.underscore), class: "toggle" %>
+      </div>
+    <% end %>
+ </fieldset>
 
   <div>
     <%= form.submit %>
