@@ -41,9 +41,10 @@
     <div class="with-columns">
       <% Save::SHIP_ITEM_IDS.keys.each do |field| %>
         <div class="field">
-          <%= form.label field.underscore do %>
-            <%= form.check_box field.underscore, checked: @save.send(field.underscore) %>
+          <%= form.label field.underscore, class: "checkbox" do %>
             <%= field.underscore.humanize  %>
+            <%= form.check_box field.underscore, checked: @save.send(field.underscore) %>
+            <span class="checkmark"></span>
           <% end %>
         </div>
       <% end %>
