@@ -18,7 +18,7 @@
     <div class="wrapper">
       <div data-simplebar>
         <% if Current.user.present? %>
-          <p>Welcome, <%= Current.user.username %></p>
+          <p>Welcome back, <%= Current.user.username %>!</p>
           <%= link_to "Edit Profile", edit_user_path(Current.user) %> |
           <%= button_to "Sign Out", sessions_path, method: :delete %>
         <% else %>
