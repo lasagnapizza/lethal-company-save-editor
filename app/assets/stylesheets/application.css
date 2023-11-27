@@ -1,7 +1,6 @@
 /*
 *= require normalize
 *= require crt
-*= require toggle
 *= require_self
 */
 
@@ -128,7 +127,7 @@ h1, h2, h3, h4, h5, h6, strong {
   color: #50eb21;
 }
 
-input, textarea {
+input[type="text"], textarea {
   display: block;
   width: 100%;
   border: 3px solid #3a8524;
@@ -153,4 +152,14 @@ fieldset legend {
   color: #FFF;
   padding: 7px 15px;
   margin-bottom: 10px;
+}
+
+fieldset legend a {
+  color: #FFF;
+  text-decoration: none;
+}
+
+.with-columns {
+  column-count: 3;
+  column-width: 200px;
 }

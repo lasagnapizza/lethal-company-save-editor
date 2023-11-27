@@ -1,17 +1,6 @@
-<div id="<%= dom_id save %>">
-  <p>
-    <strong>Title:</strong>
-    <%= save.title %>
-  </p>
+<fieldset id="<%= dom_id save %>">
+  <legend><%= link_to "#{save.title} by #{ save.user.username}", save %></legend>
 
-  <p>
-    <strong>Description:</strong>
-    <%= save.description %>
-  </p>
-
-  <p>
-    <strong>Save data:</strong>
-    <%= save.save_data_to_ordered_json %>
-  </p>
-
-</div>
+  <p><%= save.description %></p>
+  <%= save.save_data_to_ordered_json %>
+</fieldset>
