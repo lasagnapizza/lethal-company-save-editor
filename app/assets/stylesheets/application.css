@@ -127,7 +127,7 @@ h1, h2, h3, h4, h5, h6, strong {
   color: #50eb21;
 }
 
-input[type="text"], input[type="submit"], textarea, button {
+input[type="text"], input[type="email"], input[type="password"], input[type="submit"], textarea, button {
   display: block;
   width: 100%;
   border: 3px solid #3a8524;
