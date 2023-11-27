@@ -51,7 +51,7 @@ body {
   background: #000;
   color: #58c736;
   font-family: "Perfect DOS VGA 437";
-  font-size: 18pt;
+  font-size: 18px;
   cursor: url("ItStealsCursor.png"), auto;
 }
 
@@ -93,4 +93,28 @@ canvas {
 strong {
   font-weight: normal;
   color: #50eb21;
+}
+
+.field {
+  padding-bottom: 1rem;
+}
+
+.field label {
+  padding-bottom: 0.5rem;
+  display: block;
+}
+
+input, textarea {
+  display: block;
+  width: 100%;
+  border: 3px solid #3a8524;
+  background: transparent;
+  color: #FFF;
+  padding: 0.6rem;
+  font-size: 1rem;
+  font-family: "Perfect DOS VGA 437";
+}
+
+textarea {
+  resize: none;
 }
