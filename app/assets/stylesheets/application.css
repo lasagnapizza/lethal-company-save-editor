@@ -9,7 +9,7 @@
       url("PerfectDOSVGA437.woff") format("woff");
   font-weight: normal;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -18,7 +18,7 @@
       url("3270-Regular.woff") format("woff");
   font-weight: normal;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -27,7 +27,7 @@
       url("3270Condensed.woff") format("woff");
   font-weight: normal;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 @font-face {
@@ -36,7 +36,7 @@
       url("3270SemiCondensed.woff") format("woff");
   font-weight: normal;
   font-style: normal;
-  font-display: swap;
+  font-display: block;
 }
 
 html {
@@ -51,7 +51,12 @@ body {
   background: #000;
   color: #58c736;
   font-family: "Perfect DOS VGA 437";
-  font-size: 16pt;
+  font-size: 18pt;
+  cursor: url("ItStealsCursor.png"), auto;
+}
+
+a, button, input {
+  cursor: url("ItStealsCursor.png"), auto;
 }
 
 a {

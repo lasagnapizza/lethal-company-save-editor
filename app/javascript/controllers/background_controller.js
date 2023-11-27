@@ -6,7 +6,6 @@ export default class extends Controller {
   connect() {
     this.initializeProperties();
     this.configureCanvas();
-    this.handleBackground();
 
     window.addEventListener("resize", () => this.handleResize());
     this.renderStars();
@@ -31,11 +30,6 @@ export default class extends Controller {
     this.canvas.width = this.width;
     this.canvas.height = this.height;
     document.body.appendChild(this.canvas);
-  }
-
-  handleBackground() {
-    document.body.style.backgroundImage = `url(${this.canvas.toDataURL()})`;
-    document.body.style.backgroundSize = "cover";
   }
 
   randomInt(max) {
