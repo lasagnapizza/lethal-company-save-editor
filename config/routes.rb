@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   get "/help", to: "pages#help"
 
-  resources :users, only: [:new, :create, :edit, :update]
+  resources :users, except: [:index, :destroy]
   resources :sessions, only: [:new, :create] do
     collection do
       delete :destroy

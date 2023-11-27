@@ -1,4 +1,4 @@
-<h1>Edit Profile</h1>
+<h1>Edit profile</h1>
 
 <%= form_with model: @user, url: user_path(@user.id), method: :patch, local: true do |form| %>
   <% if @user.errors.any? %>

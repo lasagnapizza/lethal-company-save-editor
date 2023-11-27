@@ -29,7 +29,7 @@ body {
   font-size: 20px;
   cursor: url("ItStealsCursor.png"), auto;
   margin: 0;
-  padding: 1.5rem 0;
+  padding: 1.5em 0;
 }
 
 a, button, input, label, select {
@@ -54,12 +54,12 @@ canvas {
   margin: 0 auto;
   width: 100%;
   max-width: 900px;
-  max-height: calc(100dvh - 3rem);
-  height: calc(100dvh - 3rem);
-  box-shadow: inset 0 0 18rem black, inset 0 0 3rem black, 0 0 10rem black;
+  max-height: calc(100dvh - 3em);
+  height: calc(100dvh - 3em);
+  box-shadow: inset 0 0 18em black, inset 0 0 3em black, 0 0 10em black;
   background: #1e5e10;
-  border-radius: 2rem;
-  border: 2.5rem solid;
+  border-radius: 2em;
+  border: 2.5em solid;
   border-bottom-color: #161616;
   border-left-color: #080808;
   border-right-color: #080808;
@@ -69,7 +69,7 @@ canvas {
 
 .wrapper > div {
   max-height: 100%;
-  padding: 2rem;
+  padding: 2em;
   overflow-y: auto;
 }
 
@@ -93,7 +93,7 @@ h1, h2, h3, h4, h5, h6, strong {
 }
 
 h1:has(+ .subtitle) {
-  margin-bottom: 1rem;
+  margin-bottom: 0.5em;
 }
 
 h1 + .subtitle {
@@ -102,17 +102,17 @@ h1 + .subtitle {
 
 hr {
   height: 3px;
-  margin: 2rem 0;
+  margin: 2em 0;
   background-color: #47a72a;
   border: none;
 }
 
 .field {
-  padding-bottom: 1rem;
+  padding-bottom: 0.8em;
 }
 
 .field label {
-  padding-bottom: 0.5rem;
+  padding-bottom: 0.5em;
   display: block;
   color: #50eb21;
 }
@@ -123,7 +123,7 @@ input[type="text"], input[type="email"], input[type="password"], input[type="sub
   border: 3px solid #3a8524;
   background-color: transparent;
   color: #FFF;
-  padding: 0.6rem;
+  padding: 0.6em;
   font-size: 20px;
   font-family: "Perfect DOS VGA 437";
 }
@@ -135,7 +135,10 @@ select option {
 
 input[type="submit"], button {
   width: auto;
-  padding: 0.6rem 1rem;
+  padding: 0.6em 1em;
+}
+
+input[type="submit"] {
   background-color: #1e5e10;
 }
 
@@ -144,9 +147,9 @@ textarea {
 }
 
 fieldset {
-  margin-bottom: 2rem;
+  margin-bottom: 2em;
   border: 3px solid #47a72a;
-  padding: 1rem;
+  padding: 1em;
 }
 
 fieldset legend {
@@ -161,13 +164,15 @@ fieldset legend a {
 }
 
 code {
+  font-family: "Perfect DOS VGA 437";
+  font-size: 1em;
   color: #50eb21;
 }
 
 .box {
   border: 3px solid #47a72a;
-  padding: 1rem;
-  margin-bottom: 1rem;
+  padding: 1em;
+  margin-bottom: 1em;
 }
 
 .with-columns {

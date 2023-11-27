@@ -18,16 +18,14 @@
         <div>
           <%= link_to "LCSaveEditor v1.0", root_path %> |
           <%= link_to "all saves", saves_path %> |
-          <% if Current.user.present? %>
-            <%= button_to "logout", sessions_path, method: :delete, form_class: "form-as-link" %>
-          <% else %>
-            <%= link_to "sign in", new_session_path %>
+          <% if Current.user.blank? %>
+            <%= link_to "sign in", new_session_path %> |
           <% end %>
-          | <%= link_to "help", help_path %>
+          <%= link_to "help", help_path %>
         </div>
 
         <% if Current.user.present? %>
-          <p>> You are logged in as <%= link_to Current.user.username, edit_user_path(Current.user) %></p>
+          <p>> You are logged in as <%= link_to Current.user.username, Current.user %></p>
         <% end %>
 
 

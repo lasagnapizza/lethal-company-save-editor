@@ -9,7 +9,7 @@ class Save < ApplicationRecord
   CONSTANT_FIELDS = PUBLIC_CONSTANT_FIELDS + PRIVATE_CONSTANT_FIELDS
 
   SHIP_ITEM_IDS = {
-    "green_suite" => 1,
+    "green_suit" => 1,
     "hazard_suit" => 2,
     "pijama_suit" => 3,
     "cozy_lights" => 4,
