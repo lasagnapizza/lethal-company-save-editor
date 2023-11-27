@@ -5,6 +5,15 @@
   <div style="white-space: pre-wrap;"><%= @save.description %></div>
 </div>
 
+<% Save::CONSTANT_FIELDS.each do |field| %>
+  <%= field.underscore.humanize %>
+  <%= @save.save_data[field]["value"] %>
+<% end %>
+
+<% Save::SHIP_ITEM_IDS.keys.each do |field| %>
+  <%= field.underscore.humanize %>
+  <%= @save.send(field.underscore) %>
+<% end %>
 
 <div>
   <%= button_to "Download this save", download_save_path(@save) %>
