@@ -51,8 +51,9 @@ body {
   background: #000;
   color: #58c736;
   font-family: "Perfect DOS VGA 437";
-  font-size: 18px;
+  font-size: 20px;
   cursor: url("ItStealsCursor.png"), auto;
+  margin: 0;
 }
 
 a, button, input {
@@ -75,7 +76,9 @@ canvas {
 .wrapper {
   margin: 0 auto;
   width: 100%;
-  max-width: 720px;
+  max-width: 840px;
+  max-height: calc(100vh - 1rem);
+  height: calc(100vh - 1rem);
   border-radius: 2rem;
   padding: 2rem;
   border: 1rem solid;

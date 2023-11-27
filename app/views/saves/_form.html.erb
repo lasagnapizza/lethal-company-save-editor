@@ -11,12 +11,12 @@
     </div>
   <% end %>
 
-  <div>
+  <div class="field">
     <%= form.label :title, style: "display: block" %>
     <%= form.text_field :title %>
   </div>
 
-  <div>
+  <div class="field">
     <%= form.label :description, style: "display: block" %>
     <%= form.text_area :description %>
   </div>
@@ -31,7 +31,7 @@
   <% Save::SHIP_ITEM_IDS.keys.each do |field| %>
     <div class="field">
       <%= form.label field.underscore.humanize %>
-      <%= form.check_box field.underscore, checked: @save.send(field.underscore) %>
+      <%= form.check_box field.underscore, checked: @save.send(field.underscore), class: "toggle" %>
     </div>
   <% end %>
 
