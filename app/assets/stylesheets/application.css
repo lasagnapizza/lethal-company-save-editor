@@ -147,6 +147,7 @@ fieldset {
 
 fieldset legend {
   background: #3a8524;
+  color: #FFF;
   padding: 7px 15px;
   margin-bottom: 10px;
 }
