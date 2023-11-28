@@ -1,4 +1,8 @@
 <fieldset>
   <legend><%= link_to "##{save.id} #{save.title} by #{ save.user&.username || 'anon'}", save %></legend>
-  <div style="white-space: pre-wrap;"><%= save.description %></div>
+  <% if save.description.present? %>
+    <div style="white-space: pre-wrap;"><%= save.description %></div>
+  <% else %>
+    <div>In <%= save.current_planet_name %>, with <%= save.group_credits %> credits and, <%= save.available_ship_items.count %> <%= "item".pluralize(save.available_ship_items.count) %>.
+  <% end %>
 </fieldset>
