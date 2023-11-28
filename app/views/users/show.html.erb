@@ -1,5 +1,11 @@
 <h1><%= @user.username %>'s profile</h1>
 
+<% if Current.user == @user %>
+  <div>
+    > You can <%= link_to "edit your profile", edit_user_path(Current.user) %> or <%= button_to "logout", sessions_path, method: :delete, form_class: "form-as-link" %>
+  </div>
+<% end %>
+
 <% if @user.saves.present? %>
   <div id="saves">
     <% @user.saves.each do |save| %>
@@ -8,9 +14,6 @@
   </div>
 <% else %>
   <% if Current.user == @user %>
-    <div>
-      > You can <%= link_to "edit your profile", edit_user_path(Current.user) %> or <%= button_to "logout", sessions_path, method: :delete, form_class: "form-as-link" %>
-    </div>
     <p>> Looks like you have not created any saves yet, <%= link_to "start here", new_save_path %>.</p>
   <% else %>
     <p>> Looks like <code><%= @user.username %></code> has not created any saves yet
