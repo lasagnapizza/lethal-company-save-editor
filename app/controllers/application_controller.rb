@@ -10,7 +10,7 @@ class ApplicationController < ActionController::Base
 
   def require_login
     unless Current.user
-      redirect_to new_session_path, alert: 'Please sign in to access this page.'
+      redirect_to new_session_path, alert: "Please sign in to access this page."
     end
   end
 end

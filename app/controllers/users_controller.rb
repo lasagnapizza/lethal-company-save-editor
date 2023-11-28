@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id
-      redirect_to root_path, notice: 'Account created successfully!'
+      redirect_to root_path, notice: "Account created successfully!"
     else
       render :new
     end
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
     @user = Current.user
 
     if @user.update(user_update_params)
-      redirect_to root_path, notice: 'Profile updated successfully!'
+      redirect_to root_path, notice: "Profile updated successfully!"
     else
       render :edit
     end
@@ -43,7 +43,6 @@ class UsersController < ApplicationController
   def user_update_params
     params.require(:user).permit(:username, :password, :password_confirmation, :email)
   end
-
 
   def clean_password_params
     if params[:user][:password].blank? && params[:user][:password_confirmation].blank?

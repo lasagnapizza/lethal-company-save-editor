@@ -66,18 +66,18 @@ class Save < ApplicationRecord
   end
 
   def current_planet_name
-    MOON_IDS.invert[self.current_planet_id]
+    MOON_IDS.invert[current_planet_id]
   end
 
   def available_ship_items
-    SHIP_ITEM_IDS.keys.select { |item_name| self.send(item_name) }.map do |item_name|
-      { name: item_name, id: SHIP_ITEM_IDS[item_name] }
+    SHIP_ITEM_IDS.keys.select { |item_name| send(item_name) }.map do |item_name|
+      {name: item_name, id: SHIP_ITEM_IDS[item_name]}
     end
   end
 
   def increament_download_count!
     self.download_count += 1
-    self.save
+    save
   end
 
   def save_file
@@ -134,11 +134,15 @@ class Save < ApplicationRecord
     ordered_hash.to_json
   end
 
+  def self.default_save_data
+    @default_save_data ||= JSON.parse(File.read(Rails.root.join("config", "defaults", "save_default.json")))
+  end
+
   private
 
   def define_dynamic_methods
     SHIP_ITEM_IDS.keys.each do |item|
-      self.class.define_method("#{item}") do
+      self.class.define_method(item.to_s) do
         unlock_stored_key = "ShipUnlockStored_#{item.camelize}"
         save_data[unlock_stored_key]&.dig("value")
       end
@@ -159,10 +163,6 @@ class Save < ApplicationRecord
   def set_defaults
     default_data = self.class.default_save_data
     self.save_data = default_data if save_data == {}
-  end
-
-  def self.default_save_data
-    @default_save_data ||= JSON.parse(File.read(Rails.root.join("config", "defaults", "save_default.json")))
   end
 
   def add_to_unlocked_ship_objects(item_id)
