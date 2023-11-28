@@ -117,7 +117,7 @@ hr {
   color: #50eb21;
 }
 
-input[type="text"], input[type="email"], input[type="password"], input[type="submit"], textarea, button, select {
+input[type="text"], input[type="email"], input[type="password"], input[type="submit"], textarea, button, select, .button {
   display: block;
   width: 100%;
   border: 3px solid #3a8524;
@@ -128,12 +128,18 @@ input[type="text"], input[type="email"], input[type="password"], input[type="sub
   font-family: "Perfect DOS VGA 437";
 }
 
+.button {
+  display: inline-block;
+  text-decoration: none;
+  background-color: #1e5e10;
+}
+
 select option {
   background-color: #1e5e10;
   color: #FFF;
 }
 
-input[type="submit"], button {
+input[type="submit"], button, .button {
   width: auto;
   padding: 0.6em 1em;
 }

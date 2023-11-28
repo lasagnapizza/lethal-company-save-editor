@@ -1,12 +1,14 @@
 <h1><%= @user.username %>'s profile</h1>
 
 <% if Current.user == @user %>
-  <p>
+  <div>
     > You can <%= link_to "edit your profile", edit_user_path(Current.user) %> or <%= button_to "logout", sessions_path, method: :delete, form_class: "form-as-link" %>
-  </p>
+  </div>
+  <br />
 <% end %>
 
 <% if @user.saves.present? %>
+  <h3>Save files</h3>
   <div id="saves">
     <% @user.saves.each do |save| %>
       <%= render save %>

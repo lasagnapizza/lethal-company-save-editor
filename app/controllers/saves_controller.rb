@@ -1,5 +1,5 @@
 class SavesController < ApplicationController
-  skip_before_action :require_login, only: %i[index show download]
+  skip_before_action :require_login, only: %i[index new create show download]
 
   before_action :set_save, only: %i[show download]
   before_action :set_internal_save, only: %i[edit update destroy]
@@ -12,15 +12,15 @@ class SavesController < ApplicationController
   end
 
   def new
-    @save = Current.user.saves.new
+    @save = Save.new
   end
 
   def edit
   end
 
   def create
-    @save = Current.user.saves.new(save_params)
-    @save.file_game_vers = 40
+    @save = Save.new(save_params)
+    @save.user = Current.user if Current.user
 
     if @save.save
       redirect_to @save, notice: "Save was successfully created"
