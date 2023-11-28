@@ -5,7 +5,7 @@ class SavesController < ApplicationController
   before_action :set_internal_save, only: %i[edit update destroy]
 
   def index
-    @saves = Save.includes(:user).all
+    @saves = Save.includes(:user).order(download_count: :desc)
   end
 
   def show
