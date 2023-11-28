@@ -87,6 +87,9 @@ class Save < ApplicationRecord
   def save_data_to_ordered_json
     data = self.save_data.dup
 
+    # I opted to have this problem when I camelized the keys and used the same name for the
+    # inputs, params, etc. But its an easy fix, just some annoying naming convention.
+    # Consider that if opting to change this behaviour, past saves must be modified.
     replacement_keys = {
       "ShipUnlockStored_LoudHorn" => "ShipUnlockStored_Loud Horn",
       "ShipUnlockStored_GreenSuit" => "ShipUnlockStored_Green Suit",
