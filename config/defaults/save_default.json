@@ -27,6 +27,18 @@
     "__type": "System.Int32[],mscorlib",
     "value": []
   },
+  "ShipUnlockStored_Green Suit": {
+    "__type": "bool",
+    "value": false
+  },
+  "ShipUnlockStored_Hazard Suit": {
+    "__type": "bool",
+    "value": false
+  },
+  "ShipUnlockStored_Pijama Suit": {
+    "__type": "bool",
+    "value": false
+  },
   "ShipUnlockStored_JackOLantern": {
     "__type": "bool",
     "value": false

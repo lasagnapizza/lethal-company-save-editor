@@ -94,13 +94,14 @@ class Save < ApplicationRecord
       "ShipUnlockStored_HazardSuit" => "ShipUnlockStored_Hazard Suit",
       "ShipUnlockStored_PijamaSuit" => "ShipUnlockStored_Pijama Suit",
       "ShipUnlockStored_FileCabinet" => "ShipUnlockStored_File Cabinet",
-      "ShipUnlockStored_RecordPlayer" => "ShipUnlockStored_Record Player",
-      "ShipUnlockStored_RomanticTable" => "ShipUnlockStored_Romantic Table",
+      "ShipUnlockStored_RecordPlayer" => "ShipUnlockStored_Record player",
+      "ShipUnlockStored_RomanticTable" => "ShipUnlockStored_Romantic table",
       "ShipUnlockStored_InverseTeleporter" => "ShipUnlockStored_Inverse Teleporter",
+      "ShipUnlockStored_SignalTransmitter" => "ShipUnlockStored_Signal transmitter",
     }
 
     replacement_keys.each do |current_key, new_key|
-      data[new_key] = data.delete(current_key)
+      data[new_key] = data.delete(current_key).sort.to_h if data[current_key].present?
     end
 
     self.class.default_save_data.deep_merge(data).to_json
