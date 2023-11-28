@@ -20,6 +20,7 @@ class SavesController < ApplicationController
 
   def create
     @save = Current.user.saves.new(save_params)
+    @save.file_game_vers = 40
 
     if @save.save
       redirect_to @save, notice: "Save was successfully created"

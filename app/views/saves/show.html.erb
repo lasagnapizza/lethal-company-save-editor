@@ -1,11 +1,10 @@
-<p><%= link_to "< Go back", saves_path %></p>
+<p>< <%= link_to "Go back", saves_path %></p>
 
 <h1>#<%= @save.id %> <%= @save.title %></h1>
 <h4 class="subtitle">
-  > Created by <%= link_to_if @save.user, @save.user&.username || "anon", "#" %>, downloaded <%= @save.download_count %> <%= "time".pluralize(@save.download_count) %>.
+  > Created by <%= link_to_if @save.user, @save.user&.username || "anon", @save.user %>. Downloaded <%= @save.download_count %> <%= "time".pluralize(@save.download_count) %>.
   <% if @save.user.present? && @save.user == Current.user %>
-    |
-    <%= link_to "edit", edit_save_path(@save) %>
+    | <%= link_to "edit", edit_save_path(@save) %>
   <% end %>
 </h4>
 
