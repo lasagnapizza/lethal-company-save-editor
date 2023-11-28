@@ -23,6 +23,10 @@
     "__type": "int",
     "value": 3240
   },
+  "UnlockedShipObjects": {
+    "__type": "System.Int32[],mscorlib",
+    "value": []
+  },
   "ShipUnlockStored_JackOLantern": {
     "__type": "bool",
     "value": false

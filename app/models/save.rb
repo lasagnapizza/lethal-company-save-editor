@@ -85,53 +85,25 @@ class Save < ApplicationRecord
   end
 
   def save_data_to_ordered_json
-    key_order = [
-      "Stats_StepsTaken",
-      "Stats_ValueCollected",
-      "Stats_Deaths",
-      "Stats_DaysSpent",
-      "RandomSeed",
-      "DeadlineTime",
-      "UnlockedShipObjects",
-      "ShipUnlockStored_JackOLantern",
-      "ShipUnlockStored_Inverse Teleporter",
-      "ShipUnlockStored_Loud horn",
-      "ShipUnlockStored_Signal transmitter",
-      "ShipUnlockStored_Bunkbeds",
-      "ShipUnlockStored_Romantic table",
-      "ShipUnlockStored_Table",
-      "ShipUnlockStored_Record player",
-      "ShipUnlockStored_Shower",
-      "ShipUnlockStored_Toilet",
-      "ShipUnlockStored_File Cabinet",
-      "ShipUnlockStored_Cupboard",
-      "ShipUnlockStored_Television",
-      "ShipUnlockStored_Teleporter",
-      "StoryLogs",
-      "GroupCredits",
-      "CurrentPlanetID",
-      "ProfitQuota",
-      "QuotasPassed",
-      "QuotaFulfilled",
-      "FileGameVers"
-    ]
+    data = self.save_data.dup
 
-    original_data = save_data.dup
-    ordered_hash = {}
-    key_order.each do |key|
-      next unless original_data[key].is_a?(Hash)
+    replacement_keys = {
+      "ShipUnlockStored_LoudHorn" => "ShipUnlockStored_Loud Horn",
+      "ShipUnlockStored_GreenSuit" => "ShipUnlockStored_Green Suit",
+      "ShipUnlockStored_CozyLights" => "ShipUnlockStored_Cozy Lights",
+      "ShipUnlockStored_HazardSuit" => "ShipUnlockStored_Hazard Suit",
+      "ShipUnlockStored_PijamaSuit" => "ShipUnlockStored_Pijama Suit",
+      "ShipUnlockStored_FileCabinet" => "ShipUnlockStored_File Cabinet",
+      "ShipUnlockStored_RecordPlayer" => "ShipUnlockStored_Record Player",
+      "ShipUnlockStored_RomanticTable" => "ShipUnlockStored_Romantic Table",
+      "ShipUnlockStored_InverseTeleporter" => "ShipUnlockStored_Inverse Teleporter",
+    }
 
-      sorted_nested_keys = original_data[key].keys.sort
-
-      ordered_nested_hash = {}
-      sorted_nested_keys.each do |nested_key|
-        ordered_nested_hash[nested_key] = original_data[key][nested_key]
-      end
-
-      ordered_hash[key] = ordered_nested_hash
+    replacement_keys.each do |current_key, new_key|
+      data[new_key] = data.delete(current_key)
     end
 
-    ordered_hash.to_json
+    self.class.default_save_data.deep_merge(data).to_json
   end
 
   def self.default_save_data

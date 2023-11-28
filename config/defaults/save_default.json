@@ -23,6 +23,10 @@
     "__type": "int",
     "value": 3240
   },
+  "UnlockedShipObjects": {
+    "__type": "System.Int32[],mscorlib",
+    "value": []
+  },
   "ShipUnlockStored_JackOLantern": {
     "__type": "bool",
     "value": false
@@ -76,6 +80,10 @@
     "value": false
   },
   "ShipUnlockStored_Teleporter": {
+    "__type": "bool",
+    "value": false
+  },
+  "ShipUnlockStored_Pumpkin": {
     "__type": "bool",
     "value": false
   },
