@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  root to: "pages#index"
+  root to: "saves#index"
 
   get "up" => "rails/health#show", :as => :rails_health_check
 
+  get "/readme", to: "pages#readme"
   get "/help", to: "pages#help"
 
   resources :users, except: [:index, :destroy]

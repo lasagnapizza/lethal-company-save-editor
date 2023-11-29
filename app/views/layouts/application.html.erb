@@ -31,8 +31,8 @@
     <div class="wrapper">
       <div data-simplebar>
         <div>
-          <%= link_to "LCSaveEditor v1.0", root_path %> |
-          <%= link_to "all saves", saves_path %> |
+          <%= link_to "LCSaveEditor v1.0", readme_path %> |
+          <%= link_to "all saves", root_path %> |
           <% if Current.user.blank? %>
             <%= link_to "sign in", new_session_path %> |
           <% end %>
