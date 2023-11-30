@@ -61,6 +61,16 @@
   <div><%= "No ship items selected." if @save.available_ship_items.empty? %></div>
 </fieldset>
 
+<fieldset>
+  <legend>Story logs</legend>
+  <div class="with-columns">
+    <% @save.available_story_logs.each do |item| %>
+        <div>✔ <%= item[:name].underscore.humanize %></div>
+    <% end %>
+  </div>
+  <div><%= "No story logs selected." if @save.available_story_logs.empty? %></div>
+</fieldset>
+
 <div>
   <%= button_to "Download save", download_save_path(@save) %>
 </div>

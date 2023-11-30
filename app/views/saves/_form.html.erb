@@ -63,9 +63,24 @@
     <div class="with-columns">
       <% Save::SHIP_ITEM_IDS.keys.each do |field| %>
         <div class="field">
-          <%= form.label field.underscore, class: "checkbox" do %>
-            <%= field.underscore.humanize  %>
-            <%= form.check_box field.underscore, checked: @save.send(field.underscore) %>
+          <%= form.label field, class: "checkbox" do %>
+            <%= field.humanize  %>
+            <%= form.check_box field, checked: @save.send(field) %>
+            <span class="checkmark"></span>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+ </fieldset>
+
+  <fieldset>
+    <legend>Story logs</legend>
+    <div class="with-columns">
+      <% Save::STORY_LOG_IDS.keys.each do |field| %>
+        <div class="field">
+          <%= form.label field, class: "checkbox" do %>
+            <%= field.humanize  %>
+            <%= form.check_box field, checked: @save.send(field) %>
             <span class="checkmark"></span>
           <% end %>
         </div>

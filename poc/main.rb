@@ -65,11 +65,11 @@ if encrypted_data
     gets # Waits for the user to press Enter
 
     # Read the modified file
-    modified_data = read_save_file(output_file_path)
-    if modified_data
-      # Re-encrypt and save the modified data
-      re_encrypted_data = encrypt_aes(modified_data, password)
-      write_to_file(encrypted_output_file_path, re_encrypted_data) if re_encrypted_data
-    end
+    # modified_data = read_save_file(output_file_path)
+    # if modified_data
+      # # Re-encrypt and save the modified data
+      # re_encrypted_data = encrypt_aes(modified_data, password)
+      # write_to_file(encrypted_output_file_path, re_encrypted_data) if re_encrypted_data
+    # end
   end
 end

@@ -40,6 +40,21 @@ class Save < ApplicationRecord
     "Titan" => 8
   }
 
+  STORY_LOG_IDS = {
+    "first_log" => 0,
+    "smells_here" => 1,
+    "swing_of_things" => 2,
+    "golden_planet" => 3,
+    "shady" => 4,
+    "sound_behind_the_wall" => 5,
+    "goodbye" => 6,
+    "screams" => 7,
+    "idea" => 8,
+    "nonsense" => 9,
+    "hiding" => 10,
+    "desmond" => 11
+  }
+
   CONSTANT_FIELDS.each do |field|
     define_method(field.underscore) do
       save_data[field]["value"]
@@ -51,7 +66,40 @@ class Save < ApplicationRecord
     end
   end
 
-  after_initialize :define_dynamic_methods
+  SHIP_ITEM_IDS.keys.each do |item|
+    define_method(item.to_s) do
+      unlock_stored_key = "ShipUnlockStored_#{item.camelize}"
+      save_data[unlock_stored_key]&.dig("value")
+    end
+
+    define_method("#{item}=") do |value|
+      item_id = SHIP_ITEM_IDS[item]
+      if ActiveRecord::Type::Boolean.new.cast(value)
+        add_to_unlocked_ship_objects(item_id)
+        set_ship_unlock_stored(item, true)
+      else
+        remove_from_unlocked_ship_objects(item_id)
+        remove_ship_unlock_stored(item)
+      end
+    end
+  end
+
+  STORY_LOG_IDS.keys.each do |log|
+    define_method(log.to_s) do
+      story_log_stored_key = "StoryLogs"
+      save_data[story_log_stored_key]&.dig("value")&.include?(STORY_LOG_IDS[log])
+    end
+
+    define_method("#{log}=") do |value|
+      log_id = STORY_LOG_IDS[log]
+      if ActiveRecord::Type::Boolean.new.cast(value)
+        add_to_story_logs(log_id)
+      else
+        remove_from_story_logs(log_id)
+      end
+    end
+  end
+
   after_initialize :set_defaults
 
   belongs_to :user, optional: true
@@ -72,6 +120,12 @@ class Save < ApplicationRecord
   def available_ship_items
     SHIP_ITEM_IDS.keys.select { |item_name| send(item_name) }.map do |item_name|
       {name: item_name, id: SHIP_ITEM_IDS[item_name]}
+    end
+  end
+
+  def available_story_logs
+    STORY_LOG_IDS.keys.select { |item_name| send(item_name) }.map do |item_name|
+      {name: item_name, id: STORY_LOG_IDS[item_name]}
     end
   end
 
@@ -116,26 +170,6 @@ class Save < ApplicationRecord
 
   private
 
-  def define_dynamic_methods
-    SHIP_ITEM_IDS.keys.each do |item|
-      self.class.define_method(item.to_s) do
-        unlock_stored_key = "ShipUnlockStored_#{item.camelize}"
-        save_data[unlock_stored_key]&.dig("value")
-      end
-
-      self.class.define_method("#{item}=") do |value|
-        item_id = SHIP_ITEM_IDS[item]
-        if ActiveRecord::Type::Boolean.new.cast(value)
-          add_to_unlocked_ship_objects(item_id)
-          set_ship_unlock_stored(item, true)
-        else
-          remove_from_unlocked_ship_objects(item_id)
-          remove_ship_unlock_stored(item)
-        end
-      end
-    end
-  end
-
   def set_defaults
     default_data = self.class.default_save_data
     self.save_data = default_data if save_data == {}
@@ -160,6 +194,17 @@ class Save < ApplicationRecord
   def remove_ship_unlock_stored(item)
     unlock_stored_key = "ShipUnlockStored_#{item.camelize}"
     save_data.delete(unlock_stored_key)
+  end
+
+  def add_to_story_logs(log_id)
+    story_logs_key = "StoryLogs"
+    save_data[story_logs_key] ||= {"__type" => "System.Int32[],mscorlib", "value" => []}
+    save_data[story_logs_key]["value"] << log_id unless save_data[story_logs_key]["value"].include?(log_id)
+  end
+
+  def remove_from_story_logs(log_id)
+    story_logs_key = "StoryLogs"
+    save_data[story_logs_key]["value"].delete(log_id) if save_data[story_logs_key]&.dig("value")&.include?(log_id)
   end
 
   def encrypt_aes(data, password)

@@ -59,6 +59,6 @@ class SavesController < ApplicationController
   end
 
   def save_params
-    params.require(:save).permit(:title, :description, *Save::CONSTANT_FIELDS.map(&:underscore), *Save::SHIP_ITEM_IDS.keys)
+    params.require(:save).permit(:title, :description, *Save::CONSTANT_FIELDS.map(&:underscore), *Save::SHIP_ITEM_IDS.keys, *Save::STORY_LOG_IDS.keys)
   end
 end
