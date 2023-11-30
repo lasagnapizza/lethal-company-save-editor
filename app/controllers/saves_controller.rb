@@ -45,7 +45,7 @@ class SavesController < ApplicationController
 
   def download
     @save.increament_download_count!
-    send_data @save.save_file, filename: @save.slug, disposition: "attachment"
+    send_data @save.save_file, filename: @save.title, disposition: "attachment"
   end
 
   private
