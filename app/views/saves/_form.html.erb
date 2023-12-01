@@ -88,6 +88,21 @@
     </div>
  </fieldset>
 
+  <fieldset>
+    <legend>Bestiary</legend>
+    <div class="with-columns">
+      <% Save::ENEMY_SCAN_IDS.keys.each do |field| %>
+        <div class="field">
+          <%= form.label field, class: "checkbox" do %>
+            <%= field.humanize  %>
+            <%= form.check_box field, checked: @save.send(field) %>
+            <span class="checkmark"></span>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+ </fieldset>
+
   <div>
     <%= form.submit %>
   </div>

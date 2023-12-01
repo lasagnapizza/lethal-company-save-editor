@@ -71,6 +71,16 @@
   <div><%= "No story logs selected." if @save.available_story_logs.empty? %></div>
 </fieldset>
 
+<fieldset>
+  <legend>Bestiary</legend>
+  <div class="with-columns">
+    <% @save.available_enemy_scans.each do |item| %>
+        <div>✔ <%= item[:name].underscore.humanize %></div>
+    <% end %>
+  </div>
+  <div><%= "No bestiary entries selected." if @save.available_enemy_scans.empty? %></div>
+</fieldset>
+
 <div>
   <%= button_to "Download save", download_save_path(@save) %>
 </div>

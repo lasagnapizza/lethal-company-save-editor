@@ -55,6 +55,20 @@ class Save < ApplicationRecord
     "desmond" => 11
   }
 
+  ENEMY_SCAN_IDS = {
+    "beast_1" => 1,
+    "beast_2" => 2,
+    "beast_3" => 3,
+    "beast_4" => 4,
+    "beast_5" => 5,
+    "beast_6" => 6,
+    "beast_7" => 7,
+    "beast_8" => 8,
+    "beast_9" => 9,
+    "beast_10" => 10,
+    "beast_11" => 11,
+  }
+
   CONSTANT_FIELDS.each do |field|
     define_method(field.underscore) do
       save_data[field]["value"]
@@ -74,29 +88,58 @@ class Save < ApplicationRecord
 
     define_method("#{item}=") do |value|
       item_id = SHIP_ITEM_IDS[item]
+      collection = "UnlockedShipObjects"
       if ActiveRecord::Type::Boolean.new.cast(value)
-        add_to_unlocked_ship_objects(item_id)
+        add_id_to_collection(collection, item_id)
         set_ship_unlock_stored(item, true)
       else
-        remove_from_unlocked_ship_objects(item_id)
+        remove_id_from_collection(collection, item_id)
         remove_ship_unlock_stored(item)
       end
     end
   end
 
-  STORY_LOG_IDS.keys.each do |log|
-    define_method(log.to_s) do
-      story_log_stored_key = "StoryLogs"
-      save_data[story_log_stored_key]&.dig("value")&.include?(STORY_LOG_IDS[log])
+  STORY_LOG_IDS.keys.each do |thing|
+    define_method(thing.to_s) do
+      collection = "StoryLogs"
+      save_data[collection]&.dig("value")&.include?(STORY_LOG_IDS[thing])
     end
 
-    define_method("#{log}=") do |value|
-      log_id = STORY_LOG_IDS[log]
+    define_method("#{thing}=") do |value|
+      thing_id = STORY_LOG_IDS[thing]
+      collection = "StoryLogs"
       if ActiveRecord::Type::Boolean.new.cast(value)
-        add_to_story_logs(log_id)
+        add_id_to_collection(collection, thing_id)
       else
-        remove_from_story_logs(log_id)
+        remove_id_from_collection(collection, thing_id)
       end
+    end
+  end
+
+  ENEMY_SCAN_IDS.keys.each do |thing|
+    define_method(thing.to_s) do
+      collection = "EnemyScans"
+      save_data[collection]&.dig("value")&.include?(ENEMY_SCAN_IDS[thing])
+    end
+
+    define_method("#{thing}=") do |value|
+      thing_id = ENEMY_SCAN_IDS[thing]
+      collection = "EnemyScans"
+      if ActiveRecord::Type::Boolean.new.cast(value)
+        add_id_to_collection(collection, thing_id)
+      else
+        remove_id_from_collection(collection, thing_id)
+      end
+    end
+  end
+
+  {
+    available_ship_items: 'SHIP_ITEM_IDS',
+    available_story_logs: 'STORY_LOG_IDS',
+    available_enemy_scans: 'ENEMY_SCAN_IDS'
+  }.each do |method_name, constant_name|
+    define_method(method_name) do
+      available_items(constant_name)
     end
   end
 
@@ -117,18 +160,6 @@ class Save < ApplicationRecord
     MOON_IDS.invert[current_planet_id]
   end
 
-  def available_ship_items
-    SHIP_ITEM_IDS.keys.select { |item_name| send(item_name) }.map do |item_name|
-      {name: item_name, id: SHIP_ITEM_IDS[item_name]}
-    end
-  end
-
-  def available_story_logs
-    STORY_LOG_IDS.keys.select { |item_name| send(item_name) }.map do |item_name|
-      {name: item_name, id: STORY_LOG_IDS[item_name]}
-    end
-  end
-
   def increament_download_count!
     self.download_count += 1
     save
@@ -145,7 +176,7 @@ class Save < ApplicationRecord
     # inputs, params, etc. But its an easy fix, just some annoying naming convention.
     # Consider that if opting to change this behaviour, past saves must be modified.
     replacement_keys = {
-      "ShipUnlockStored_LoudHorn" => "ShipUnlockStored_Loud Horn",
+      "ShipUnlockStored_LoudHorn" => "ShipUnlockStored_Loud horn",
       "ShipUnlockStored_GreenSuit" => "ShipUnlockStored_Green Suit",
       "ShipUnlockStored_CozyLights" => "ShipUnlockStored_Cozy Lights",
       "ShipUnlockStored_HazardSuit" => "ShipUnlockStored_Hazard Suit",
@@ -161,7 +192,7 @@ class Save < ApplicationRecord
       data[new_key] = data.delete(current_key).sort.to_h if data[current_key].present?
     end
 
-    self.class.default_save_data.deep_merge(data).to_json
+    raise self.class.default_save_data.deep_merge(data).inspect # s.to_json
   end
 
   def self.default_save_data
@@ -175,15 +206,10 @@ class Save < ApplicationRecord
     self.save_data = default_data if save_data == {}
   end
 
-  def add_to_unlocked_ship_objects(item_id)
-    unlocked_ship_objects_key = "UnlockedShipObjects"
-    save_data[unlocked_ship_objects_key] ||= {"__type" => "System.Int32[],mscorlib", "value" => []}
-    save_data[unlocked_ship_objects_key]["value"] << item_id unless save_data[unlocked_ship_objects_key]["value"].include?(item_id)
-  end
-
-  def remove_from_unlocked_ship_objects(item_id)
-    unlocked_ship_objects_key = "UnlockedShipObjects"
-    save_data[unlocked_ship_objects_key]["value"].delete(item_id) if save_data[unlocked_ship_objects_key]&.dig("value")&.include?(item_id)
+  def available_items(constant_name)
+    self.class.const_get(constant_name).keys.select { |item_name| send(item_name) }.map do |item_name|
+      { name: item_name, id: self.class.const_get(constant_name)[item_name] }
+    end
   end
 
   def set_ship_unlock_stored(item, value)
@@ -196,15 +222,13 @@ class Save < ApplicationRecord
     save_data.delete(unlock_stored_key)
   end
 
-  def add_to_story_logs(log_id)
-    story_logs_key = "StoryLogs"
-    save_data[story_logs_key] ||= {"__type" => "System.Int32[],mscorlib", "value" => []}
-    save_data[story_logs_key]["value"] << log_id unless save_data[story_logs_key]["value"].include?(log_id)
+  def add_id_to_collection(collection, thing_id)
+    save_data[collection] ||= {"__type" => "System.Int32[],mscorlib", "value" => []}
+    save_data[collection]["value"] << thing_id unless save_data[collection]["value"].include?(thing_id)
   end
 
-  def remove_from_story_logs(log_id)
-    story_logs_key = "StoryLogs"
-    save_data[story_logs_key]["value"].delete(log_id) if save_data[story_logs_key]&.dig("value")&.include?(log_id)
+  def remove_id_from_collection(collection, thing_id)
+    save_data[collection]["value"].delete(thing_id) if save_data[collection]&.dig("value")&.include?(thing_id)
   end
 
   def encrypt_aes(data, password)
