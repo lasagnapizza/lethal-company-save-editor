@@ -67,6 +67,13 @@ class Save < ApplicationRecord
     "beast_9" => 9,
     "beast_10" => 10,
     "beast_11" => 11,
+    "beast_12" => 12,
+    "beast_13" => 13,
+    "beast_14" => 14,
+    "beast_15" => 15,
+    "beast_16" => 16,
+    "beast_17" => 17,
+    "beast_18" => 18
   }
 
   CONSTANT_FIELDS.each do |field|
@@ -134,9 +141,9 @@ class Save < ApplicationRecord
   end
 
   {
-    available_ship_items: 'SHIP_ITEM_IDS',
-    available_story_logs: 'STORY_LOG_IDS',
-    available_enemy_scans: 'ENEMY_SCAN_IDS'
+    available_ship_items: "SHIP_ITEM_IDS",
+    available_story_logs: "STORY_LOG_IDS",
+    available_enemy_scans: "ENEMY_SCAN_IDS"
   }.each do |method_name, constant_name|
     define_method(method_name) do
       available_items(constant_name)
@@ -170,7 +177,7 @@ class Save < ApplicationRecord
   end
 
   def save_data_to_ordered_json
-    data = self.save_data.dup
+    data = save_data.dup
 
     # I opted to have this problem when I camelized the keys and used the same name for the
     # inputs, params, etc. But its an easy fix, just some annoying naming convention.
@@ -185,14 +192,14 @@ class Save < ApplicationRecord
       "ShipUnlockStored_RecordPlayer" => "ShipUnlockStored_Record player",
       "ShipUnlockStored_RomanticTable" => "ShipUnlockStored_Romantic table",
       "ShipUnlockStored_InverseTeleporter" => "ShipUnlockStored_Inverse Teleporter",
-      "ShipUnlockStored_SignalTransmitter" => "ShipUnlockStored_Signal transmitter",
+      "ShipUnlockStored_SignalTransmitter" => "ShipUnlockStored_Signal transmitter"
     }
 
     replacement_keys.each do |current_key, new_key|
       data[new_key] = data.delete(current_key).sort.to_h if data[current_key].present?
     end
 
-    raise self.class.default_save_data.deep_merge(data).inspect # s.to_json
+    self.class.default_save_data.deep_merge(data).to_json
   end
 
   def self.default_save_data
@@ -208,7 +215,7 @@ class Save < ApplicationRecord
 
   def available_items(constant_name)
     self.class.const_get(constant_name).keys.select { |item_name| send(item_name) }.map do |item_name|
-      { name: item_name, id: self.class.const_get(constant_name)[item_name] }
+      {name: item_name, id: self.class.const_get(constant_name)[item_name]}
     end
   end
 
