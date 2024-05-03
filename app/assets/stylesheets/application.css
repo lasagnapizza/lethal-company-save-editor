@@ -30,6 +30,7 @@ body {
   cursor: url("ItStealsCursor.png"), auto;
   margin: 0;
   padding: 1.5em 0;
+  word-break: break-word;
 }
 
 a, button, input, label, select {
